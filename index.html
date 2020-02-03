@@ -5,23 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./main.css">
 </head>
 <body>
-    <h1>Sorting Hat</h1>
 
-    <div class="jumbotron">
-        <h1 class="display-4">Hello, world!</h1>
+  <div class="d-flex justify-content-center">
+    <div class="w-75 p-3">
+      <div class="jumbotron" id="jumbotronBtnToggle">
+        <h1 class="display-4">Welcome to Hogwarts!</h1>
         <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
         <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
         <p class="lead">
-          <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+          <a id="jumbotronBtn" class="btn btn-danger btn-lg" role="button" onclick="toggleFunction()">Let's Start Sorting!</a>
         </p>
       </div>
+    </div>
+  </div>
+  
+    
 
+    <div id="form" class="d-flex justify-content-center" style="display: none">
+      <div class="w-75 p-3 m-3" style="background-color: #eee;">
+        <form id = "formReset">
+          <div class="form-group">
+            <h1>Enter First Name</h1>
+            <div class="w-75 p-3">
+              <label for="name">Name</label>
+              <input type="name" class="form-control" id="name" placeholder="Neville Longbottom"> 
+            </div>
+          </div>
+          <button id="submitBtn" type="button" class="btn btn-danger">Submit</button>
+        </form>
+      </div>
+    </div>
+    
 
-    <script src="./main.js"></script>
+    <div id="studentSort"></div>
+
+      
+    
+  <script src="./main.js"></script>
+
 </body>
 </html>
