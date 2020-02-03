@@ -59,11 +59,21 @@ const houseFilter = (studentName) => {
 const submitted = (e) =>  {
     student.push({Name: name, House: houseFilter(name), Id: Id++});
     studentCards();
+    expelBtn();
 }
 
 const submitName = () => {
     document.getElementById("name").addEventListener('input', getName);
     document.getElementById("submitBtn").addEventListener('click', submitted);
+}
+
+let expel = (e) => {
+    
+    console.log(student.splice({Name: name, House: houseFilter(name), Id: Id}));
+}
+
+const expelBtn = () => {
+    document.getElementById("expel").addEventListener('click', expel)
 }
 
 const init = () => {
