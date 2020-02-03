@@ -1,55 +1,87 @@
-const student = [
-    {
-        name: "Beth",
-        house: "Ravenclaw",
-    },
-    {
-        name: "Beth",
-        house: "Ravenclaw",
-    },
-    {
-        name: "Beth",
-        house: "Ravenclaw",
-    }
-]
-
 
 const printToDom = (divId, textToPrint) => {
-   const selectedDiv = document.getElementById(divId);
-   selectedDiv.innerHTML = textToPrint;
-};
+    const selectedDiv = document.getElementById(divId);
+    selectedDiv.innerHTML = textToPrint;
+ };
+ 
+ const studentCards = () => {
+      let domString= "";
+      for (let i = 0; i < student.length; i++) {
+          domString += '<div class="card text-black bg-form m-5" style="max-width: 18rem; background-color: #eee;">';
+          domString +=   '<div class="card-body">';
+          domString +=       `<h1 class="card-title">${student[i].Name}</h1>`;
+          domString +=       `<h3 class="card-text">${student[i].House}</h3>`;
+          domString +=   '</div>';
+          domString +=   '<button id="expel" class="btn btn-danger">Expel<button>';
+          domString += '</div>';
+      }
+     printToDom('studentSort', domString); 
+ };
+ 
+let name = "";
+let Id = 0;
 
-const studentCards = () => {
-     let domString= "";
-     for (let i = 0; i < student.length; i++) {
-         domString += '<div class="card text-white bg-form mb-3" style="max-width: 18rem;">';
-         domString += '<div class="card-body">';
-         domString += `<h1 class="card-title">${student[i].name}</h1>`;
-         domString += `<h3 class="card-text">${student[i].house}</h3>`;
-         domString += '</div>';
-         domString += '<button class="btn btn-danger">Expel<button>';
-         domString += '</div>';
-     }
-    console.log(printToDom('studentSort', domString)); 
-};
+const student = [];
+const getName = (e) => name = e.target.value;
 
-
-const toggleFunction = () => {
-    const toggle = document.getElementById("jumbotronBtnToggle");
-     if (toggle.style.display === "none") {
-         toggle.style = "block";
-     } else {
-         toggle.style.display = "none";
-     }
- }
-
- const jumbotronEvents = () => {
-     document.getElementById("jumbotronBtnToggle").addEventListener('click', jumbotronEvents)
+const houseFilter = (studentName) => {
+    switch (name.toLowerCase().charAt(0)) {
+        case "a":
+        case "b":
+        case "c": 
+        case "d":
+        case "e":
+        case "f":    
+            return "Ravenclaw";
+            break;
+        case "g":   
+        case "h":
+        case "i":
+        case "j": 
+        case "k":
+        case "l":
+            return "Slytherin";
+            break;
+        case "m":  
+        case "n":
+        case "o":
+        case "p":  
+        case "q":
+        case "r":
+            return "Hufflepuff";
+            break;
+        default:
+            return "Gryffindor";
+            break;       
+    }
 }
 
-const init = () => {
-    jumbotronEvents();
+const submitted = (e) =>  {
+    student.push({Name: name, House: houseFilter(name), Id: Id++});
     studentCards();
 }
 
-init()
+const submitName = () => {
+    document.getElementById("name").addEventListener('input', getName);
+    document.getElementById("submitBtn").addEventListener('click', submitted);
+}
+
+const init = () => {
+    // jumbotronEvents();
+    submitName();
+}
+
+init();
+
+//const toggleFunction = () => {
+     //const jumboTron = document.getElementById("jumbotronBtnToggle");
+       //if (jumboTron.style.display === "none") {
+         //document.getElementById("jumbotronBtnToggle").style = "block";
+       //} else {
+        // jumboTron.style.display = "none";
+       //}
+//}
+
+//const jumbotronEvents = () => {
+    //document.getElementById("jumbotronBtnToggle").addEventListener('click', jumbotronEvents)
+//}
