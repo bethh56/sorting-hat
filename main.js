@@ -65,11 +65,12 @@ const submitted = (e) =>  {
 const submitName = () => {
     document.getElementById("name").addEventListener('input', getName);
     document.getElementById("submitBtn").addEventListener('click', submitted);
+    document.getElementById('formReset').value='';
 }
 
 let expel = (e) => {
-    
-    console.log(student.splice({Name: name, House: houseFilter(name), Id: Id}));
+    student.splice({Name: name, House: houseFilter(name), Id: Id});
+    studentCards();
 }
 
 const expelBtn = () => {
@@ -95,3 +96,5 @@ init();
 //const jumbotronEvents = () => {
     //document.getElementById("jumbotronBtnToggle").addEventListener('click', jumbotronEvents)
 //}
+
+// target.remove
