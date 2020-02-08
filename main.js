@@ -12,7 +12,7 @@ const printToDom = (divId, textToPrint) => {
           domString +=       `<h1 class="card-title">${student[i].Name}</h1>`;
           domString +=       `<h3 class="card-text">${student[i].House}</h3>`;
           domString +=   '</div>';
-          domString +=   '<button id="expel" class="btn btn-danger">Expel<button>';
+          domString +=   '<button id="expel" type="button" class="btn btn-danger">Expel<button>';
           domString += '</div>';
       }
      printToDom('studentSort', domString); 
@@ -78,23 +78,19 @@ const expelBtn = () => {
 }
 
 const init = () => {
-    // jumbotronEvents();
+    toggleFunction();
     submitName();
 }
 
 init();
 
-//const toggleFunction = () => {
-     //const jumboTron = document.getElementById("jumbotronBtnToggle");
-       //if (jumboTron.style.display === "none") {
-         //document.getElementById("jumbotronBtnToggle").style = "block";
-       //} else {
-        // jumboTron.style.display = "none";
-       //}
-//}
-
-//const jumbotronEvents = () => {
-    //document.getElementById("jumbotronBtnToggle").addEventListener('click', jumbotronEvents)
-//}
-
 // target.remove
+
+const toggleFunction = () = {
+    var jumboTron = document.getElementById("form");
+    if (jumboTron.style.display === "none") {
+        jumboTron.style.display === "block";
+    } else {
+        jumboTron.style.display = "none";
+    }
+}
