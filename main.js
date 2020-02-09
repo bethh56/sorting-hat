@@ -8,13 +8,17 @@ const printToDom = (divId, textToPrint) => {
       let domString= "";
       for (let i = 0; i < student.length; i++) {
           domString += '<div class="col-md-6 col-lg-4">';
-          domString += '<div class="card text-black bg-form m-5" background-color: #eee;">';
-          domString +=   '<div class="card-body">';
+          domString +=   `<div id=${student[i].House} class="card text-white bg-form m-5" background-color: #eee;">`;
+          domString +=     `<div class="border border-white rounded">`
+          domString +=       `<div class="card-body">`;
           domString +=       `<h1 class="card-title">${student[i].Name}</h1>`;
           domString +=       `<h3 class="card-text">${student[i].House}</h3>`;
-          domString +=   '</div>';
-          domString +=   '<button id="expel" type="button" class="btn btn-danger">Expel<button>';
-          domString += '</div>';
+          domString +=     '</div>';
+          domString +=     '<div>'
+          domString +=      '<button id="expel" type="button" class="btn btn-outline-light">Expel<button>';
+          domString +=     '</div>'
+          domString +=     '</div>';
+          domString +=   `</div>`
           domString += '</div>';
           
           
@@ -73,9 +77,7 @@ const submitName = () => {
 }
 
 let expel = () => {
-    for (let i = 0; i < student.length; i++) {
-        expelBtn(student.splice({Name: name, House: houseFilter(name), Id: Id}));
-    }
+    expelBtn(student.splice({Name: name, House: houseFilter(name), Id: Id}));
     studentCards();
 }
 
