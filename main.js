@@ -7,13 +7,17 @@ const printToDom = (divId, textToPrint) => {
  const studentCards = () => {
       let domString= "";
       for (let i = 0; i < student.length; i++) {
-          domString += '<div class="card text-black bg-form m-5" style="max-width: 18rem; background-color: #eee;">';
+          domString += '<div class="col-md-6 col-lg-4">';
+          domString += '<div class="card text-black bg-form m-5" background-color: #eee;">';
           domString +=   '<div class="card-body">';
           domString +=       `<h1 class="card-title">${student[i].Name}</h1>`;
           domString +=       `<h3 class="card-text">${student[i].House}</h3>`;
           domString +=   '</div>';
           domString +=   '<button id="expel" type="button" class="btn btn-danger">Expel<button>';
           domString += '</div>';
+          domString += '</div>';
+          
+          
       }
      printToDom('studentSort', domString); 
  };
@@ -68,29 +72,21 @@ const submitName = () => {
     document.getElementById('formReset').value='';
 }
 
-let expel = (e) => {
-    student.splice({Name: name, House: houseFilter(name), Id: Id});
+let expel = () => {
+    for (let i = 0; i < student.length; i++) {
+        expelBtn(student.splice({Name: name, House: houseFilter(name), Id: Id}));
+    }
     studentCards();
 }
 
-const expelBtn = () => {
+const expelBtn = (e) => {
     document.getElementById("expel").addEventListener('click', expel)
 }
 
 const init = () => {
-    toggleFunction();
     submitName();
 }
 
 init();
 
-// target.remove
 
-const toggleFunction = () = {
-    var jumboTron = document.getElementById("form");
-    if (jumboTron.style.display === "none") {
-        jumboTron.style.display === "block";
-    } else {
-        jumboTron.style.display = "none";
-    }
-}
