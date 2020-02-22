@@ -16,7 +16,7 @@ const printToDom = (divId, textToPrint) => {
           domString +=       `<h3 class="card-text">${student[i].House}</h3>`;
           domString +=     '</div>';
           domString +=     '<div>';
-          domString +=      '<button id="expel" type="button" class="expelBtn btn btn-dark btn-outline-light m-3 w-50 float-right">Expel</button>';
+          domString +=      `<button id="expelling" type="button" class="btn btn-dark btn-outline-light m-3 w-50 float-right expelWhenClicked">Expel</button>`;
           domString +=     '</div>';
           domString +=     '</div>';
           domString +=   `</div>`;
@@ -33,30 +33,31 @@ let Id = 0;
 const student = [];
 const getName = (e) => name = e.target.value;
 
+// HOUSE FILTER
 const houseFilter = (studentName) => {
     switch (name.toLowerCase().charAt(0)) {
         case "a":
-        case "b":
+        case "h":
         case "c": 
         case "d":
-        case "e":
+        case "n":
         case "f":    
             return "Ravenclaw";
             break;
         case "g":   
-        case "h":
+        case "b":
         case "i":
         case "j": 
-        case "k":
+        case "r":
         case "l":
             return "Slytherin";
             break;
         case "m":  
-        case "n":
+        case "e":
         case "o":
         case "p":  
         case "q":
-        case "r":
+        case "k":
             return "Hufflepuff";
             break;
         default:
@@ -76,14 +77,18 @@ const submitName = () => {
     document.getElementById("submitBtn").addEventListener('click', submitted);
 }
 
+
+
+// EXPEL BUTTON
+const expelBtn = (e) => {
+    document.getElementById("expelling").addEventListener('click', expel)
+}
+
 let expel = () => {
     expelBtn(student.splice({Name: name, House: houseFilter(name), Id: Id}));
     studentCards();
 }
 
-const expelBtn = (e) => {
-    document.getElementsByClassName("expelBtn").addEventListener('click', expel)
-}
 
 // PAGE LOAD INIT
 const init = () => {
