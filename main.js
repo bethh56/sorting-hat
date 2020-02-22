@@ -1,19 +1,28 @@
-
+//PRINT TO DOM
 const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
     selectedDiv.innerHTML = textToPrint;
  };
  
+ // STUDENT SORTING CARDS
  const studentCards = () => {
       let domString= "";
       for (let i = 0; i < student.length; i++) {
-          domString += '<div class="card text-black bg-form m-5" style="max-width: 18rem; background-color: #eee;">';
-          domString +=   '<div class="card-body">';
+          domString += '<div class="col-md-6 col-lg-4">';
+          domString +=   `<div id=${student[i].House} class="card text-white bg-form m-5" background-color: #eee;">`;
+          domString +=     `<div class="border border-white rounded">`;
+          domString +=       `<div class="card-body">`;
           domString +=       `<h1 class="card-title">${student[i].Name}</h1>`;
           domString +=       `<h3 class="card-text">${student[i].House}</h3>`;
-          domString +=   '</div>';
-          domString +=   '<button id="expel" class="btn btn-danger">Expel<button>';
+          domString +=     '</div>';
+          domString +=     '<div>';
+          domString +=      `<button id="expelling" type="button" class="btn btn-dark btn-outline-light m-3 w-50 float-right expelWhenClicked">Expel</button>`;
+          domString +=     '</div>';
+          domString +=     '</div>';
+          domString +=   `</div>`;
           domString += '</div>';
+          
+          
       }
      printToDom('studentSort', domString); 
  };
@@ -24,30 +33,31 @@ let Id = 0;
 const student = [];
 const getName = (e) => name = e.target.value;
 
+// HOUSE FILTER
 const houseFilter = (studentName) => {
     switch (name.toLowerCase().charAt(0)) {
         case "a":
-        case "b":
+        case "h":
         case "c": 
         case "d":
-        case "e":
+        case "n":
         case "f":    
             return "Ravenclaw";
             break;
         case "g":   
-        case "h":
+        case "b":
         case "i":
         case "j": 
-        case "k":
+        case "r":
         case "l":
             return "Slytherin";
             break;
         case "m":  
-        case "n":
+        case "e":
         case "o":
         case "p":  
         case "q":
-        case "r":
+        case "k":
             return "Hufflepuff";
             break;
         default:
@@ -59,6 +69,7 @@ const houseFilter = (studentName) => {
 const submitted = (e) =>  {
     student.push({Name: name, House: houseFilter(name), Id: Id++});
     studentCards();
+    expelBtn();
 }
 
 const submitName = () => {
@@ -66,22 +77,24 @@ const submitName = () => {
     document.getElementById("submitBtn").addEventListener('click', submitted);
 }
 
+
+
+// EXPEL BUTTON
+const expelBtn = (e) => {
+    document.getElementById("expelling").addEventListener('click', expel)
+}
+
+let expel = () => {
+    expelBtn(student.splice({Name: name, House: houseFilter(name), Id: Id}));
+    studentCards();
+}
+
+
+// PAGE LOAD INIT
 const init = () => {
-    // jumbotronEvents();
     submitName();
 }
 
 init();
 
-//const toggleFunction = () => {
-     //const jumboTron = document.getElementById("jumbotronBtnToggle");
-       //if (jumboTron.style.display === "none") {
-         //document.getElementById("jumbotronBtnToggle").style = "block";
-       //} else {
-        // jumboTron.style.display = "none";
-       //}
-//}
 
-//const jumbotronEvents = () => {
-    //document.getElementById("jumbotronBtnToggle").addEventListener('click', jumbotronEvents)
-//}
