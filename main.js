@@ -32,6 +32,8 @@ const printToDom = (divId, textToPrint) => {
 let name = "";
 let Id = 0;
 
+
+// EMPTY STUDENT ARRAY
 const student = [];
 
 // HOUSE FILTER
@@ -97,10 +99,20 @@ const expel = (e) => {
     studentCards();
 }
 
+const toggleEvent = () => {
+    document.getElementById("jumbotronBtn").addEventListener("click", toggle)
+}
+
+const toggle = (e) => {
+    
+}
+
+
 
 // PAGE LOAD INIT
 const init = () => {
     submitName();
+    toggleEvent();
 }
 
 init();
