@@ -90,9 +90,11 @@ const expelEvents = () => {
 }
 
 const expel = (e) => {
-    console.log("it working");
-     // const expelBtn = student.splice({Name: name, House: houseFilter(name), Id: Id});
-    // studentCards();
+    // console.log("it working");
+    const studentId = e.target.closest(".card").id;
+    const studentPosition = student.findIndex((p) => p.id === studentId);
+    student.splice(studentPosition, 1);
+    studentCards();
 }
 
 
