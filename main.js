@@ -16,7 +16,7 @@ const printToDom = (divId, textToPrint) => {
           domString +=       `<h3 class="card-text">${student[i].House}</h3>`;
           domString +=     '</div>';
           domString +=     '<div>';
-          domString +=      `<button id="expelling" type="button" class="btn btn-dark btn-outline-light m-3 w-50 float-right expelWhenClicked">Expel</button>`;
+          domString +=      `<button id=${student[i].Id} type="button" class="btn btn-dark btn-outline-light m-3 w-50 float-right expelWhenClicked">Expel</button>`;
           domString +=     '</div>';
           domString +=     '</div>';
           domString +=   `</div>`;
@@ -24,14 +24,17 @@ const printToDom = (divId, textToPrint) => {
           
           
       }
-     printToDom('studentSort', domString); 
+     printToDom('studentSort', domString);
+     expelEvents();
+     
  };
  
 let name = "";
 let Id = 0;
 
+
+// EMPTY STUDENT ARRAY
 const student = [];
-const getName = (e) => name = e.target.value;
 
 // HOUSE FILTER
 const houseFilter = (studentName) => {
@@ -69,8 +72,9 @@ const houseFilter = (studentName) => {
 const submitted = (e) =>  {
     student.push({Name: name, House: houseFilter(name), Id: Id++});
     studentCards();
-    expelBtn();
 }
+
+const getName = (e) => name = e.target.value;
 
 const submitName = () => {
     document.getElementById("name").addEventListener('input', getName);
@@ -80,19 +84,35 @@ const submitName = () => {
 
 
 // EXPEL BUTTON
-const expelBtn = (e) => {
-    document.getElementById("expelling").addEventListener('click', expel)
+const expelEvents = () => {
+    const expelling = document.getElementsByClassName("expelWhenClicked");
+    for(let i = 0; i < expelling.length; i++){
+        expelling[i].addEventListener('click', expel)
+    }
 }
 
-let expel = () => {
-    expelBtn(student.splice({Name: name, House: houseFilter(name), Id: Id}));
+const expel = (e) => {
+    // console.log("it working");
+    const studentId = e.target.closest(".card").id;
+    const studentPosition = student.findIndex((p) => p.id === studentId);
+    student.splice(studentPosition, 1);
     studentCards();
 }
+
+const toggleEvent = () => {
+    document.getElementById("jumbotronBtn").addEventListener("click", toggle)
+}
+
+const toggle = (e) => {
+    
+}
+
 
 
 // PAGE LOAD INIT
 const init = () => {
     submitName();
+    toggleEvent();
 }
 
 init();
