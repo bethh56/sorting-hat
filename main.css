@@ -17,3 +17,7 @@ body {
 #Hufflepuff {
     background-color: goldenrod;
 }
+
+.hide {
+    display: none;
+}
