@@ -9,7 +9,7 @@ const printToDom = (divId, textToPrint) => {
       let domString= "";
       for (let i = 0; i < student.length; i++) {
           domString += '<div class="col-md-6 col-lg-4">';
-          domString += `<div id=${student[i].House} class="card text-white bg-form m-5" background-color: #eee;">`;
+          domString += `<div class="${student[i].House} card text-white bg-form m-5">`;
           domString += `<div class="border border-white rounded">`;
           domString += `<div class="card-body">`;
           domString += `<h1 class="card-title">${student[i].Name}</h1>`;
@@ -74,10 +74,14 @@ const expel = (e) => {
     studentCards();
 }
 
-
+const showForm = () => {
+    $('.newStudentForm').removeClass('hide')
+}
 
 // PAGE LOAD INIT
 const init = () => {
+    $('.newStudentForm').addClass('hide')
+    document.getElementById("jumbotronBtn").addEventListener('click', showForm)
     submitName();
 }
 
