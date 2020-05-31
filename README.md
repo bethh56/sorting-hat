@@ -12,7 +12,4 @@ On page load, user sees bootstrap jumbotron.  Below jumbotron is a form the user
 
 
 ## How To Run
-1. Clone down this repo
-1. Make sure you have http-server installed via npm. If not, get it here
-1. On your command line run hs -p 8080
-1. In your browser go to http://localhost:8080
+Follow this link- https://sortinghat-5f2bf.web.app/
